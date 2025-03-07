@@ -1,0 +1,414 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 0,
+    "passes": 0,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-03-07T12:12:04.816Z",
+    "end": "2025-03-07T12:12:38.262Z",
+    "duration": 33446,
+    "testsRegistered": 7,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 6,
+    "hasOther": true,
+    "skipped": 7,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "2cc4d320-3310-436b-b44b-5351834af65f",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+          "title": "Google Search Test Suite",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js",
+          "file": "/tests/googleSearchTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"should open Google homepage\"",
+              "fullTitle": "Google Search Test Suite \"before all\" hook for \"should open Google homepage\"",
+              "timedOut": true,
+              "duration": 13036,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();\nawait driver.manage().setTimeouts({ implicit: 5000 });",
+              "err": {
+                "message": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js)",
+                "estack": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js)\n    at listOnTimeout (node:internal/timers:569:17)\n    at process.processTimers (node:internal/timers:512:7)",
+                "diff": null
+              },
+              "uuid": "4145e8ed-8f5e-4f2e-912d-13452d9a828b",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook for \"should check if the first result link is displayed\"",
+              "fullTitle": "Google Search Test Suite \"after all\" hook for \"should check if the first result link is displayed\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {
+                "message": "TypeError: Cannot read properties of undefined (reading 'quit')",
+                "estack": "TypeError: Cannot read properties of undefined (reading 'quit')\n    at Context.<anonymous> (file:///Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js:13:22)\n    at process.processImmediate (node:internal/timers:476:21)",
+                "diff": null
+              },
+              "uuid": "b3539c8a-486d-4638-b515-9f5e00e849f0",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook",
+              "fullTitle": "Google Search Test Suite \"after each\" hook",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === \"failed\") {\n    await takeScreenshot(driver, this.currentTest.title);\n}",
+              "err": {},
+              "uuid": "b6a1d8bc-8041-4afc-ae26-546d7bcf572c",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should open Google homepage",
+              "fullTitle": "Google Search Test Suite should open Google homepage",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"https://www.google.com\");\nlet title = await driver.getTitle();\nexpect(title).to.include(\"Google\");",
+              "err": {},
+              "uuid": "ff7fc766-99cd-441d-9dc2-e1d87192875a",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "should search for WebDriver and check results",
+              "fullTitle": "Google Search Test Suite should search for WebDriver and check results",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let searchBox = await driver.findElement(By.name(\"q\"));\nawait searchBox.sendKeys(\"WebDriver\", Key.RETURN);\nawait driver.wait(until.titleContains(\"WebDriver\"), 5000);\nlet title = await driver.getTitle();\nexpect(title).to.include(\"WebDriver\");",
+              "err": {},
+              "uuid": "0e2212da-63f1-4a1c-9de1-72e8746bb474",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "should check if the first result link is displayed",
+              "fullTitle": "Google Search Test Suite should check if the first result link is displayed",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let firstResult = await driver.wait(\n    until.elementLocated(By.css(\"h3\")),\n    10000\n);\nawait driver.wait(until.elementIsVisible(firstResult), 5000);\nlet isDisplayed = await firstResult.isDisplayed();\nexpect(isDisplayed).to.be.true;",
+              "err": {},
+              "uuid": "9f063975-612c-4fbd-8a2f-183d3d0cd787",
+              "parentUUID": "04c42e76-d017-470b-a98d-f6df3c92b25c",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "ff7fc766-99cd-441d-9dc2-e1d87192875a",
+            "0e2212da-63f1-4a1c-9de1-72e8746bb474",
+            "9f063975-612c-4fbd-8a2f-183d3d0cd787"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "26e3f313-287a-44a1-993d-a55b244666d1",
+          "title": "Login Test Suite",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/loginTest.js",
+          "file": "/tests/loginTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"should login with valid credentials\"",
+              "fullTitle": "Login Test Suite \"before all\" hook for \"should login with valid credentials\"",
+              "timedOut": true,
+              "duration": 10200,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();\nawait driver.get(\"https://example.com/login\");",
+              "err": {
+                "message": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/loginTest.js)",
+                "estack": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/loginTest.js)\n    at listOnTimeout (node:internal/timers:569:17)\n    at process.processTimers (node:internal/timers:512:7)",
+                "diff": null
+              },
+              "uuid": "873fb304-0023-48b3-9285-fc4c55c46646",
+              "parentUUID": "26e3f313-287a-44a1-993d-a55b244666d1",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook for \"should show error on invalid login\"",
+              "fullTitle": "Login Test Suite \"after all\" hook for \"should show error on invalid login\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {
+                "message": "TypeError: Cannot read properties of undefined (reading 'quit')",
+                "estack": "TypeError: Cannot read properties of undefined (reading 'quit')\n    at Context.<anonymous> (file:///Users/surendar/aws-webdriver-automation/tests/loginTest.js:13:22)\n    at process.processImmediate (node:internal/timers:476:21)",
+                "diff": null
+              },
+              "uuid": "10855520-7941-4e46-8a24-2a6bb7dac467",
+              "parentUUID": "26e3f313-287a-44a1-993d-a55b244666d1",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should login with valid credentials",
+              "fullTitle": "Login Test Suite should login with valid credentials",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.name(\"username\")).sendKeys(\"testuser\");\nawait driver.findElement(By.name(\"password\")).sendKeys(\"password123\", Key.RETURN);\nlet successMessage = await driver.findElement(By.id(\"success\")).getText();\nexpect(successMessage).to.include(\"Welcome\");",
+              "err": {},
+              "uuid": "181da7fc-587f-4a12-bc07-ee6e28d32ed0",
+              "parentUUID": "26e3f313-287a-44a1-993d-a55b244666d1",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "should show error on invalid login",
+              "fullTitle": "Login Test Suite should show error on invalid login",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.name(\"username\")).sendKeys(\"wronguser\");\nawait driver.findElement(By.name(\"password\")).sendKeys(\"wrongpassword\", Key.RETURN);\nlet errorMessage = await driver.findElement(By.id(\"error\")).getText();\nexpect(errorMessage).to.include(\"Invalid credentials\");",
+              "err": {},
+              "uuid": "1e47db57-97bd-4769-a177-e880d5520501",
+              "parentUUID": "26e3f313-287a-44a1-993d-a55b244666d1",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "181da7fc-587f-4a12-bc07-ee6e28d32ed0",
+            "1e47db57-97bd-4769-a177-e880d5520501"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "0700efef-d92f-4400-a07c-ab2997273b47",
+          "title": "Navigation Test Suite",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/navigationTest.js",
+          "file": "/tests/navigationTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"should navigate to About page\"",
+              "fullTitle": "Navigation Test Suite \"before all\" hook for \"should navigate to About page\"",
+              "timedOut": true,
+              "duration": 10202,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();\nawait driver.get(\"https://example.com\");",
+              "err": {
+                "message": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/navigationTest.js)",
+                "estack": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/surendar/aws-webdriver-automation/tests/navigationTest.js)\n    at listOnTimeout (node:internal/timers:569:17)\n    at process.processTimers (node:internal/timers:512:7)",
+                "diff": null
+              },
+              "uuid": "80b82e5d-0a80-44ff-b120-725c15b0afbf",
+              "parentUUID": "0700efef-d92f-4400-a07c-ab2997273b47",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook for \"should navigate to Contact page\"",
+              "fullTitle": "Navigation Test Suite \"after all\" hook for \"should navigate to Contact page\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {
+                "message": "TypeError: Cannot read properties of undefined (reading 'quit')",
+                "estack": "TypeError: Cannot read properties of undefined (reading 'quit')\n    at Context.<anonymous> (file:///Users/surendar/aws-webdriver-automation/tests/navigationTest.js:13:22)\n    at process.processImmediate (node:internal/timers:476:21)",
+                "diff": null
+              },
+              "uuid": "51950c5b-b0c1-46b2-8878-bd2908f512be",
+              "parentUUID": "0700efef-d92f-4400-a07c-ab2997273b47",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should navigate to About page",
+              "fullTitle": "Navigation Test Suite should navigate to About page",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.linkText(\"About\")).click();\nlet title = await driver.getTitle();\nexpect(title).to.include(\"About\");",
+              "err": {},
+              "uuid": "181bd2ad-3e8b-4329-aae0-4751b6acdfae",
+              "parentUUID": "0700efef-d92f-4400-a07c-ab2997273b47",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "should navigate to Contact page",
+              "fullTitle": "Navigation Test Suite should navigate to Contact page",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.linkText(\"Contact\")).click();\nlet title = await driver.getTitle();\nexpect(title).to.include(\"Contact\");",
+              "err": {},
+              "uuid": "ce4afc96-6888-412c-bea5-192b62a931a0",
+              "parentUUID": "0700efef-d92f-4400-a07c-ab2997273b47",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "181bd2ad-3e8b-4329-aae0-4751b6acdfae",
+            "ce4afc96-6888-412c-bea5-192b62a931a0"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "TestReport",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./reports",
+        "reportFilename": "TestReport",
+        "overwrite": "false"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

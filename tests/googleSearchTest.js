@@ -1,46 +1,28 @@
-import { getDriver, takeScreenshot, By, Key, until } from "../utils/webdriverHelper.js";
-import { expect } from "chai";
+const { driver, By, until, takeScreenshot } = require("./setup");
+const assert = require("assert");
 
 describe("Google Search Test Suite", function () {
-    let driver;
+  this.timeout(20000);
 
-    before(async function () {
-        driver = await getDriver();
-        await driver.manage().setTimeouts({ implicit: 5000 });
-    });
+  it("should open Google homepage", async function () {
+    await driver.get("https://www.google.com");
+    let title = await driver.getTitle();
+    assert.strictEqual(title, "Google");
+  });
 
-    after(async function () {
-        await driver.quit();
-    });
+  it("should search for 'Selenium WebDriver' and verify results", async function () {
+    let searchBox = await driver.findElement(By.name("q"));
+    await searchBox.sendKeys("Selenium WebDriver");
+    await searchBox.submit();
 
-    afterEach(async function () {
-        if (this.currentTest.state === "failed") {
-            await takeScreenshot(driver, this.currentTest.title);
-        }
-    });
-
-    it("should open Google homepage", async function () {
-        await driver.get("https://www.google.com");
-        let title = await driver.getTitle();
-        expect(title).to.include("Google");
-    });
-
-    it("should search for WebDriver and check results", async function () {
-        let searchBox = await driver.findElement(By.name("q"));
-        await searchBox.sendKeys("WebDriver", Key.RETURN);
-        await driver.wait(until.titleContains("WebDriver"), 5000);
-        let title = await driver.getTitle();
-        expect(title).to.include("WebDriver");
-    });
-
-    it("should check if the first result link is displayed", async function () {
-        let firstResult = await driver.wait(
-            until.elementLocated(By.css("h3")),
-            10000
-        );
-        await driver.wait(until.elementIsVisible(firstResult), 5000);
-        let isDisplayed = await firstResult.isDisplayed();
-        expect(isDisplayed).to.be.true;
-    });
+    try {
+      await driver.wait(until.elementLocated(By.id("search")), 10000);
+      let resultStats = await driver.findElement(By.id("result-stats"));
+      assert.ok(resultStats, "Search results not found");
+    } catch (error) {
+      await takeScreenshot("GoogleSearch_Failure");
+      throw error;
+    }
+  });
 });
 

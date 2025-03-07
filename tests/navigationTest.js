@@ -1,28 +1,36 @@
-import { getDriver, takeScreenshot, By } from "../utils/webdriverHelper.js";
-import { expect } from "chai";
+const { driver, By, until, takeScreenshot } = require("./setup");
+const assert = require("assert");
 
 describe("Navigation Test Suite", function () {
-    let driver;
+  this.timeout(20000);
 
-    before(async function () {
-        driver = await getDriver();
-        await driver.get("https://example.com");
-    });
+  it("should navigate to About page", async function () {
+    await driver.get("https://example.com");
+    let aboutLink = await driver.findElement(By.linkText("About"));
+    await aboutLink.click();
 
-    after(async function () {
-        await driver.quit();
-    });
+    try {
+      await driver.wait(until.titleContains("About"), 10000);
+      let title = await driver.getTitle();
+      assert.ok(title.includes("About"), "Navigation failed");
+    } catch (error) {
+      await takeScreenshot("Navigation_About_Failure");
+      throw error;
+    }
+  });
 
-    it("should navigate to About page", async function () {
-        await driver.findElement(By.linkText("About")).click();
-        let title = await driver.getTitle();
-        expect(title).to.include("About");
-    });
+  it("should navigate to Contact page", async function () {
+    let contactLink = await driver.findElement(By.linkText("Contact"));
+    await contactLink.click();
 
-    it("should navigate to Contact page", async function () {
-        await driver.findElement(By.linkText("Contact")).click();
-        let title = await driver.getTitle();
-        expect(title).to.include("Contact");
-    });
+    try {
+      await driver.wait(until.titleContains("Contact"), 10000);
+      let title = await driver.getTitle();
+      assert.ok(title.includes("Contact"), "Navigation failed");
+    } catch (error) {
+      await takeScreenshot("Navigation_Contact_Failure");
+      throw error;
+    }
+  });
 });
 

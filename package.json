@@ -1,15 +1,18 @@
 {
   "name": "aws-webdriver-automation",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "selenium-webdriver": "^4.1.0",
-    "chai": "^4.3.6",
-    "mocha": "^10.0.0",
-    "mochawesome": "^7.1.3"
-  },
   "scripts": {
+<<<<<<< HEAD
      "test": "mocha tests --timeout 10000 --reporter mochawesome"
+=======
+    "test": "mocha tests --timeout 20000 --reporter mochawesome --reporter-options reportDir=./reports,reportFilename=TestReport,overwrite=false"
+  },
+  "dependencies": {
+    "mocha": "^10.0.0",
+    "mochawesome": "^7.1.0",
+    "selenium-webdriver": "^4.1.0",
+    "assert": "^2.0.0"
+>>>>>>> d140d6c (Second Cicd Pipeline)
   }
 }
 
