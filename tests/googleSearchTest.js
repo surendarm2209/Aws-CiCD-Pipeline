@@ -29,27 +29,34 @@
 
 
 
-const { getDriver, By, until } = require("./setup");
+
+
+import { getDriver, By, until, takeScreenshot } from "./setup.js";
+import { describe, it, before, after } from "mocha";
 
 let driver;
 
-before(async function () {
-  this.timeout(30000);
-  driver = await getDriver();
-});
-
-after(async function () {
-  if (driver) {
-    await driver.quit();
-  }
-});
-
 describe("Google Search Test", function () {
-  it("should search for 'Selenium WebDriver'", async function () {
+  this.timeout(20000);
+
+  before(async function () {
+    driver = await getDriver();
+  });
+
+  it("should open Google homepage", async function () {
     await driver.get("https://www.google.com");
+    await takeScreenshot(driver, "google_homepage");
+  });
+
+  it("should search for 'Selenium WebDriver'", async function () {
     let searchBox = await driver.findElement(By.name("q"));
-    await searchBox.sendKeys("Selenium WebDriver", until.elementIsVisible(searchBox));
+    await searchBox.sendKeys("Selenium WebDriver");
     await searchBox.submit();
     await driver.wait(until.titleContains("Selenium WebDriver"), 5000);
+    await takeScreenshot(driver, "google_search_results");
+  });
+
+  after(async function () {
+    await driver.quit();
   });
 });
