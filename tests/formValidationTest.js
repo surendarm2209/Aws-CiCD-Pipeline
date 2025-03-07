@@ -25,16 +25,13 @@
 //   });
 // });
 
-const { Builder, By, until } = require("selenium-webdriver");
-const fs = require("fs");
+const { driver } = require("../testSetup");
+const { By, until, takeScreenshot } = require("../setup");
 
-async function getDriver() {
-  return await new Builder().forBrowser("chrome").build();
-}
+describe("Form Validation Test Suite", function () {
+  it("should display error for empty form submission", async function () {
+    await driver.get("https://example.com");
+    await takeScreenshot(driver, "formValidationError");
+  });
+});
 
-async function takeScreenshot(driver, testName) {
-  let image = await driver.takeScreenshot();
-  fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
-}
-
-module.exports = { getDriver, By, until, takeScreenshot };
