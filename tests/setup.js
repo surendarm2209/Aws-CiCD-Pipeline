@@ -40,19 +40,20 @@
 // module.exports = { getDriver, By, until, takeScreenshot };
 
 
-const { Builder, By, until } = require("selenium-webdriver");
+import { Builder, By, until } from "selenium-webdriver";
+import fs from "fs";
 
-async function getDriver() {
-  return await new Builder().forBrowser("chrome").build();
+export async function getDriver() {
+  let driver = await new Builder().forBrowser("chrome").build();
+  return driver;
 }
 
-async function takeScreenshot(driver, testName) {
+export async function takeScreenshot(driver, filename) {
   let image = await driver.takeScreenshot();
-  fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
+  fs.writeFileSync(`./reports/${filename}.png`, image, "base64");
 }
 
-
-module.exports = { getDriver, By, until };
+export { By, until };
 
 
 
