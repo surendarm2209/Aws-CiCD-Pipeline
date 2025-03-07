@@ -29,7 +29,7 @@
 
 
 
-const { getDriver, By, until } = require("../tests/setup");
+const { getDriver, By, until } = require("./setup");
 
 let driver;
 
