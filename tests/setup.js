@@ -25,18 +25,11 @@
 
 // module.exports = { driver, By, until, takeScreenshot };
 
-
 const { Builder, By, until } = require("selenium-webdriver");
 const fs = require("fs");
 
 async function getDriver() {
-  try {
-    const driver = await new Builder().forBrowser("chrome").build();
-    return driver;
-  } catch (error) {
-    console.error("WebDriver failed to initialize:", error);
-    throw error; // Ensure the error is properly handled
-  }
+  return await new Builder().forBrowser("chrome").build();
 }
 
 async function takeScreenshot(driver, testName) {
@@ -45,5 +38,6 @@ async function takeScreenshot(driver, testName) {
 }
 
 module.exports = { getDriver, By, until, takeScreenshot };
+
 
 
