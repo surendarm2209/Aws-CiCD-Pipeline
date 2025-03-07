@@ -25,7 +25,7 @@
 //   });
 // });
 
-const { getDriver, By, until } = require("../setup");
+const { getDriver, By, until } = require("./setup");
 const fs = require("fs");
 
 let driver;
