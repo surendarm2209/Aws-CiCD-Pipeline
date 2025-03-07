@@ -25,13 +25,27 @@
 //   });
 // });
 
-const { driver } = require("../testSetup");
-const { By, until, takeScreenshot } = require("../setup");
+const { getDriver, By, until } = require("../setup");
+const fs = require("fs");
 
-describe("Form Validation Test Suite", function () {
-  it("should display error for empty form submission", async function () {
-    await driver.get("https://example.com");
-    await takeScreenshot(driver, "formValidationError");
-  });
+let driver;
+
+before(async function () {
+  this.timeout(30000);
+  driver = await getDriver();
 });
+
+after(async function () {
+  if (driver) {
+    await driver.quit();
+  }
+});
+
+async function takeScreenshot(testName) {
+  let image = await driver.takeScreenshot();
+  fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
+}
+
+module.exports = { takeScreenshot };
+
 
