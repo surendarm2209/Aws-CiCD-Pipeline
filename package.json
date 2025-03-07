@@ -2,17 +2,13 @@
   "name": "aws-webdriver-automation",
   "version": "1.0.0",
   "scripts": {
-<<<<<<< HEAD
-     "test": "mocha tests --timeout 10000 --reporter mochawesome"
-=======
-    "test": "mocha tests --timeout 20000 --reporter mochawesome --reporter-options reportDir=./reports,reportFilename=TestReport,overwrite=false"
+    "test": "mocha tests --timeout 10000 --reporter mochawesome"
   },
   "dependencies": {
     "mocha": "^10.0.0",
     "mochawesome": "^7.1.0",
     "selenium-webdriver": "^4.1.0",
     "assert": "^2.0.0"
->>>>>>> d140d6c (Second Cicd Pipeline)
   }
 }
 
