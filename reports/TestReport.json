@@ -1,0 +1,207 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-03-07T10:26:02.845Z",
+    "end": "2025-03-07T10:26:11.699Z",
+    "duration": 8854,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1c0c8f94-1ea5-4e43-b92d-ff0c704ab792",
+      "title": "",
+      "fullFile": "/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js",
+      "file": "/tests/googleSearchTest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+          "title": "Google Search Test Suite",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js",
+          "file": "/tests/googleSearchTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Google Search Test Suite\"",
+              "fullTitle": "Google Search Test Suite \"before all\" hook in \"Google Search Test Suite\"",
+              "timedOut": false,
+              "duration": 934,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();\nawait driver.manage().setTimeouts({ implicit: 5000 });",
+              "err": {},
+              "uuid": "9c9f86de-41c5-4b19-ad65-95e5d7af98bf",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Google Search Test Suite\"",
+              "fullTitle": "Google Search Test Suite \"after all\" hook in \"Google Search Test Suite\"",
+              "timedOut": false,
+              "duration": 56,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "05c69398-6f83-4f99-9ce0-19d5fbb29428",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook for \"should check if the first result link is displayed\"",
+              "fullTitle": "Google Search Test Suite \"after each\" hook for \"should check if the first result link is displayed\"",
+              "timedOut": false,
+              "duration": 325,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === \"failed\") {\n    await takeScreenshot(driver, this.currentTest.title);\n}",
+              "err": {
+                "message": "Error: ENOENT: no such file or directory, open './reports/screenshots/should_check_if_the_first_result_link_is_displayed.png'",
+                "estack": "Error: ENOENT: no such file or directory, open './reports/screenshots/should_check_if_the_first_result_link_is_displayed.png'\n    at Object.openSync (node:fs:596:3)\n    at Object.writeFileSync (node:fs:2322:35)\n    at takeScreenshot (file:///Users/surendar/aws-webdriver-automation/utils/webdriverHelper.js:14:8)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Context.<anonymous> (file:///Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js:18:13)",
+                "diff": null
+              },
+              "uuid": "18ba5b42-5964-4f2d-a251-a8b8fd41ec03",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should open Google homepage",
+              "fullTitle": "Google Search Test Suite should open Google homepage",
+              "timedOut": false,
+              "duration": 1029,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"https://www.google.com\");\nlet title = await driver.getTitle();\nexpect(title).to.include(\"Google\");",
+              "err": {},
+              "uuid": "91a00608-97c3-489c-9136-36ae5ee23dca",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should search for WebDriver and check results",
+              "fullTitle": "Google Search Test Suite should search for WebDriver and check results",
+              "timedOut": false,
+              "duration": 1468,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let searchBox = await driver.findElement(By.name(\"q\"));\nawait searchBox.sendKeys(\"WebDriver\", Key.RETURN);\nawait driver.wait(until.titleContains(\"WebDriver\"), 5000);\nlet title = await driver.getTitle();\nexpect(title).to.include(\"WebDriver\");",
+              "err": {},
+              "uuid": "7298089a-ada7-430b-a044-2bf9edb753df",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should check if the first result link is displayed",
+              "fullTitle": "Google Search Test Suite should check if the first result link is displayed",
+              "timedOut": false,
+              "duration": 5037,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "let firstResult = await driver.wait(\n    until.elementLocated(By.css(\"h3\")),\n    5000\n);\nlet isDisplayed = await firstResult.isDisplayed();\nexpect(isDisplayed).to.be.true;",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, h3)\nWait timed out after 5037ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, h3)\nWait timed out after 5037ms\n    at /Users/surendar/aws-webdriver-automation/node_modules/selenium-webdriver/lib/webdriver.js:928:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "5c8d4259-377e-43aa-8be9-2ea41e2f0cfb",
+              "parentUUID": "b5c5edc9-2501-4c12-a77b-4cb22c506a7c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "91a00608-97c3-489c-9136-36ae5ee23dca",
+            "7298089a-ada7-430b-a044-2bf9edb753df"
+          ],
+          "failures": [
+            "5c8d4259-377e-43aa-8be9-2ea41e2f0cfb"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 7534,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.1.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "TestReport",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./reports",
+        "reportFilename": "TestReport",
+        "overwrite": "false"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
