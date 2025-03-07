@@ -27,19 +27,29 @@
 //   });
 // });
 
-const { driver } = require("../testSetup");
-const { By, until, takeScreenshot } = require("../setup");
 
-describe("Google Search Test Suite", function () {
-  it("should open Google homepage", async function () {
+
+const { getDriver, By, until } = require("../setup");
+
+let driver;
+
+before(async function () {
+  this.timeout(30000);
+  driver = await getDriver();
+});
+
+after(async function () {
+  if (driver) {
+    await driver.quit();
+  }
+});
+
+describe("Google Search Test", function () {
+  it("should search for 'Selenium WebDriver'", async function () {
     await driver.get("https://www.google.com");
-  });
-
-  it("should search for 'Selenium WebDriver' and verify results", async function () {
     let searchBox = await driver.findElement(By.name("q"));
-    await searchBox.sendKeys("Selenium WebDriver");
+    await searchBox.sendKeys("Selenium WebDriver", until.elementIsVisible(searchBox));
     await searchBox.submit();
     await driver.wait(until.titleContains("Selenium WebDriver"), 5000);
-    await takeScreenshot(driver, "googleSearchResults");
   });
 });
