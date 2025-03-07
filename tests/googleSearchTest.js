@@ -1,5 +1,6 @@
 const { driver, By, until, takeScreenshot } = require("./setup");
 const assert = require("assert");
+const driver = require("../setup");
 
 describe("Google Search Test Suite", function () {
   this.timeout(20000);
