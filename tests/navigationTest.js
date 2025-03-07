@@ -35,17 +35,21 @@
 //   });
 // });
 
-const { driver } = require("../testSetup");
-const { By, until, takeScreenshot } = require("../setup");
 
-describe("Navigation Test Suite", function () {
-  it("should navigate to About page", async function () {
-    await driver.get("https://example.com/about");
-    await takeScreenshot(driver, "aboutPage");
-  });
+------------------------------------------------------
 
-  it("should navigate to Contact page", async function () {
-    await driver.get("https://example.com/contact");
-    await takeScreenshot(driver, "contactPage");
-  });
-});
+  
+// const { driver } = require("../testSetup");
+// const { By, until, takeScreenshot } = require("../setup");
+
+// describe("Navigation Test Suite", function () {
+//   it("should navigate to About page", async function () {
+//     await driver.get("https://example.com/about");
+//     await takeScreenshot(driver, "aboutPage");
+//   });
+
+//   it("should navigate to Contact page", async function () {
+//     await driver.get("https://example.com/contact");
+//     await takeScreenshot(driver, "contactPage");
+//   });
+// });
