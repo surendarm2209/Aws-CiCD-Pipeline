@@ -25,27 +25,34 @@
 //   });
 // });
 
-const { getDriver, By, until } = require("./setup");
-const fs = require("fs");
+import { getDriver, By, until, takeScreenshot } from "./setup.js";
+import { describe, it, before, after } from "mocha";
 
 let driver;
 
-before(async function () {
-  this.timeout(30000);
-  driver = await getDriver();
-});
+describe("Form Validation Test", function () {
+  this.timeout(20000);
 
-after(async function () {
-  if (driver) {
+  before(async function () {
+    driver = await getDriver();
+  });
+
+  it("should load the form page", async function () {
+    await driver.get("https://www.w3schools.com/html/html_forms.asp");
+    await takeScreenshot(driver, "form_page_loaded");
+  });
+
+  it("should fill out and submit the form", async function () {
+    let nameInput = await driver.findElement(By.name("fname"));
+    await nameInput.sendKeys("John Doe");
+
+    let submitButton = await driver.findElement(By.css("input[type='submit']"));
+    await submitButton.click();
+
+    await takeScreenshot(driver, "form_submission");
+  });
+
+  after(async function () {
     await driver.quit();
-  }
+  });
 });
-
-async function takeScreenshot(testName) {
-  let image = await driver.takeScreenshot();
-  fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
-}
-
-module.exports = { takeScreenshot };
-
-
