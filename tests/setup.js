@@ -25,8 +25,22 @@
 
 // module.exports = { driver, By, until, takeScreenshot };
 
+// const { Builder, By, until } = require("selenium-webdriver");
+// const fs = require("fs");
+
+// async function getDriver() {
+//   return await new Builder().forBrowser("chrome").build();
+// }
+
+// async function takeScreenshot(driver, testName) {
+//   let image = await driver.takeScreenshot();
+//   fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
+// }
+
+// module.exports = { getDriver, By, until, takeScreenshot };
+
+
 const { Builder, By, until } = require("selenium-webdriver");
-const fs = require("fs");
 
 async function getDriver() {
   return await new Builder().forBrowser("chrome").build();
@@ -37,7 +51,8 @@ async function takeScreenshot(driver, testName) {
   fs.writeFileSync(`./reports/${testName}.png`, image, "base64");
 }
 
-module.exports = { getDriver, By, until, takeScreenshot };
+
+module.exports = { getDriver, By, until };
 
 
 
