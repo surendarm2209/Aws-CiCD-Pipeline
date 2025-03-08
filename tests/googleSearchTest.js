@@ -28,7 +28,11 @@ describe("Google Search Test", function () {
 
 after(async function () {
   if (driver) {
-    await driver.quit();
+    try {
+      await driver.quit();
+    } catch (error) {
+      console.warn("Error closing WebDriver:", error);
+    }
   }
 });
 
