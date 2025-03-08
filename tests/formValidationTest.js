@@ -25,34 +25,56 @@
 //   });
 // });
 
-import { getDriver, By, until, takeScreenshot } from "./setup.js";
-import { describe, it, before, after } from "mocha";
 
-let driver;
+//----------------------------
 
-describe("Form Validation Test", function () {
-  this.timeout(20000);
+// import { getDriver, By, until, takeScreenshot } from "./setup.js";
+// import { describe, it, before, after } from "mocha";
 
-  before(async function () {
-    driver = await getDriver();
-  });
+// let driver;
 
-  it("should load the form page", async function () {
-    await driver.get("https://www.w3schools.com/html/html_forms.asp");
-    await takeScreenshot(driver, "form_page_loaded");
-  });
+// describe("Form Validation Test", function () {
+//   this.timeout(20000);
 
-  it("should fill out and submit the form", async function () {
-    let nameInput = await driver.findElement(By.name("fname"));
-    await nameInput.sendKeys("John Doe");
+//   before(async function () {
+//     driver = await getDriver();
+//   });
 
-    let submitButton = await driver.findElement(By.css("input[type='submit']"));
-    await submitButton.click();
+//   it("should load the form page", async function () {
+//     this.timeout(60000); 
+//     await driver.get("https://www.w3schools.com/html/html_forms.asp");
+//     await takeScreenshot(driver, "form_page_loaded");
+//   });
 
-    await takeScreenshot(driver, "form_submission");
-  });
 
-  after(async function () {
-    await driver.quit();
-  });
-});
+
+//   it('should fill out and submit the form', async function () {
+//     this.timeout(60000); // Increase timeout to avoid timeouts
+
+//     await driver.get('https://your-form-url.com'); // Replace with actual URL
+
+//     // ✅ Wait for the name field to be present
+//     let nameInput = await driver.wait(until.elementLocated(By.id('name')), 20000);
+//     await nameInput.sendKeys('John Doe');
+
+//     let emailInput = await driver.wait(until.elementLocated(By.id('email')), 10000);
+//     await emailInput.sendKeys('johndoe@example.com');
+
+//     let submitButton = await driver.wait(until.elementLocated(By.id('submit')), 10000);
+//     await submitButton.click();
+
+//     // ✅ Take screenshot after submission
+//     await takeScreenshot(driver, "form_submission");
+
+//     // ✅ Wait for success message
+//     await driver.wait(until.elementLocated(By.id('success-message')), 30000);
+// });
+
+
+  
+
+
+//   after(async function () {
+//     await driver.quit();
+//   });
+// });

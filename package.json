@@ -1,14 +1,17 @@
 {
   "name": "aws-webdriver-automation",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "test": "mocha tests --timeout 10000 --reporter mochawesome --reporter-options reportDir=./reports,reportFilename=TestReport_$(date +%Y%m%d%H%M%S),overwrite=false"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "mocha": "^10.0.0",
     "mochawesome": "^7.1.0",
-    "selenium-webdriver": "^4.1.0",
-    "assert": "^2.0.0"
+    "selenium-webdriver": "^4.1.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^134.0.0"
   }
 }
-
