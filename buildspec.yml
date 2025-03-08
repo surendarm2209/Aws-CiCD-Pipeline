@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18  # Ensure the correct Node.js version
+    commands:
+      - echo "Installing dependencies..."
+      - npm ci  # Clean install for dependencies
+
+  pre_build:
+    commands:
+      - echo "Starting WebDriver setup..."
+      - npx webdriver-manager update  # Update WebDriver
+      - npx webdriver-manager start &  # Start WebDriver in the background
+      - sleep 5  # Wait for WebDriver to start
+
+  build:
+    commands:
+      - echo "Running WebDriver tests..."
+      - npx mocha tests --timeout 20000 --reporter mochawesome --reporter-options reportDir=./reports,reportFilename=TestReport,overwrite=false
+
+  post_build:
+    commands:
+      - echo "Uploading reports to S3..."
+      - aws s3 cp ./reports s3://webdriver-test-reports/ --recursive
+
+artifacts:
+  files:
+    - reports/**/*
+  discard-paths: no
+  base-directory: reports
+
