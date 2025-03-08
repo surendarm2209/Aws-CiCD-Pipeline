@@ -28,7 +28,7 @@ import fs from "fs";
 export async function getDriver() {
   const uniqueProfile = `/tmp/chrome-profile-${Date.now()}`; // Unique profile directory
 
-  let options = new chrome.Options();
+  let options = new Options();
   options.addArguments(
     "--disable-blink-features=AutomationControlled",
     "--disable-infobars",
@@ -36,9 +36,9 @@ export async function getDriver() {
     `--user-data-dir=${uniqueProfile}` // Unique profile for each test run
   );
 
-  // Headless options for CI/CD
+  // Headless mode for CI/CD (ensure compatibility)
   options.addArguments(
-    "--headless",
+    "--headless=new", // Use "new" for Chrome versions >= 109
     "--disable-gpu",
     "--no-sandbox",
     "--disable-dev-shm-usage"
@@ -46,8 +46,8 @@ export async function getDriver() {
 
   let driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
 
-  // Set timeouts for stability
-  await driver.manage().setTimeouts({ implicit: 10000, pageLoad: 20000 });
+  // Recommended: Remove implicit waits and use explicit waits in tests
+  // await driver.manage().setTimeouts({ implicit: 10000, pageLoad: 20000 });
 
   return driver;
 }
