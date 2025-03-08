@@ -16,7 +16,13 @@ describe("Navigation Test", function () {
   });
 
   after(async function () {
-    await driver.quit();
+    if (driver) {
+      try {
+        await driver.quit();
+      } catch (error) {
+        console.warn("Error closing WebDriver:", error);
+      }
+    }
   });
 });
 
