@@ -20,6 +20,7 @@ import fs from "fs";
 //   await driver.manage().setTimeouts({ implicit: 10000, pageLoad: 20000 });
 
 //   return driver;
+
 // }
 
 
