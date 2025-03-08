@@ -11,6 +11,7 @@ import fs from "fs";
 //       "--disable-blink-features=AutomationControlled", // Bypass bot detection
 //       "--disable-infobars",
 //       "--start-maximized"
+
 //   );
 //   options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
 
