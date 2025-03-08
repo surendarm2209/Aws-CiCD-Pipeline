@@ -1,0 +1,339 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 5,
+    "passes": 4,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-03-08T17:04:18.941Z",
+    "end": "2025-03-08T17:04:39.174Z",
+    "duration": 20233,
+    "testsRegistered": 5,
+    "passPercent": 80,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c88df3da-a8c4-4b1a-bebe-0b1580c131c7",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a39e8496-cc57-402e-b51f-c57c09dc27a4",
+          "title": "Google Search Test",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/googleSearchTest.js",
+          "file": "/tests/googleSearchTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Google Search Test\"",
+              "fullTitle": "Google Search Test \"before all\" hook in \"Google Search Test\"",
+              "timedOut": false,
+              "duration": 1159,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();",
+              "err": {},
+              "uuid": "625dac79-fc45-4fcf-a969-ef3245b4757a",
+              "parentUUID": "a39e8496-cc57-402e-b51f-c57c09dc27a4",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Google Search Test\"",
+              "fullTitle": "Google Search Test \"after all\" hook in \"Google Search Test\"",
+              "timedOut": false,
+              "duration": 53,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (driver) {\n  await driver.quit();\n}",
+              "err": {},
+              "uuid": "8645be6b-69f6-484b-8ba2-0109797551fc",
+              "parentUUID": "a39e8496-cc57-402e-b51f-c57c09dc27a4",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should open Google homepage",
+              "fullTitle": "Google Search Test should open Google homepage",
+              "timedOut": false,
+              "duration": 901,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(60000);\n\nawait driver.get('https://www.google.com');\n\n// ✅ Take a screenshot after the homepage loads\nawait takeScreenshot(driver, \"google_homepage\");\n\nlet title = await driver.getTitle();\nassert(title.includes(\"Google\"), \"Google homepage did not load properly\");",
+              "err": {},
+              "uuid": "a416a3ed-0798-4c7d-976f-57df0439f9f5",
+              "parentUUID": "a39e8496-cc57-402e-b51f-c57c09dc27a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should search for 'Selenium WebDriver' and verify results",
+              "fullTitle": "Google Search Test should search for 'Selenium WebDriver' and verify results",
+              "timedOut": false,
+              "duration": 15246,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(60000);\n// ✅ Accept cookies (if prompted)\ntry {\n    let acceptButton = await driver.findElement(By.css(\"button[aria-label='Accept all']\"));\n    await acceptButton.click();\n} catch (e) {\n    console.log(\"No cookie prompt found,  proceeding...\");\n}\n// ✅ Wait for search box and type query\nlet searchBox = await driver.wait(until.elementLocated(By.name(\"q\")), 10000);\nawait searchBox.sendKeys(\"Selenium WebDriver\", Key.RETURN);\n// ✅ Wait for results section to appear\nlet searchResults = await driver.wait(until.elementLocated(By.id('search')), 15000);\nawait driver.wait(until.elementIsVisible(searchResults), 5000);\n// ✅ Take a screenshot after results load\nawait takeScreenshot(driver, \"google_search_results\");\n// ✅ Verify title contains the search term\nlet title = await driver.getTitle();\nassert(title.toLowerCase().includes(\"selenium webdriver\"), \"Title does not contain expected text\");",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"search\"])\nWait timed out after 15073ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"search\"])\nWait timed out after 15073ms\n    at /Users/surendar/aws-webdriver-automation/node_modules/selenium-webdriver/lib/webdriver.js:928:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "06edee97-c2b7-48fa-b26e-8eda9e38f158",
+              "parentUUID": "a39e8496-cc57-402e-b51f-c57c09dc27a4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a416a3ed-0798-4c7d-976f-57df0439f9f5"
+          ],
+          "failures": [
+            "06edee97-c2b7-48fa-b26e-8eda9e38f158"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 16147,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        },
+        {
+          "uuid": "5debca43-7c2f-476d-830c-05021975eca0",
+          "title": "Login Test",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/loginTest.js",
+          "file": "/tests/loginTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Login Test\"",
+              "fullTitle": "Login Test \"before all\" hook in \"Login Test\"",
+              "timedOut": false,
+              "duration": 532,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();",
+              "err": {},
+              "uuid": "3116831b-c8de-454d-a60f-47a608d00987",
+              "parentUUID": "5debca43-7c2f-476d-830c-05021975eca0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Login Test\"",
+              "fullTitle": "Login Test \"after all\" hook in \"Login Test\"",
+              "timedOut": false,
+              "duration": 53,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "142a38b3-53d0-4862-8205-cf9769404217",
+              "parentUUID": "5debca43-7c2f-476d-830c-05021975eca0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should open the login page",
+              "fullTitle": "Login Test should open the login page",
+              "timedOut": false,
+              "duration": 511,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"https://www.saucedemo.com/\");\nawait takeScreenshot(driver, \"login_page_loaded\");",
+              "err": {},
+              "uuid": "32e9457f-7063-40e1-b141-ebbe94e66fd7",
+              "parentUUID": "5debca43-7c2f-476d-830c-05021975eca0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should enter credentials and login",
+              "fullTitle": "Login Test should enter credentials and login",
+              "timedOut": false,
+              "duration": 448,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let username = await driver.findElement(By.id(\"user-name\"));\nlet password = await driver.findElement(By.id(\"password\"));\nlet loginButton = await driver.findElement(By.id(\"login-button\"));\nawait username.sendKeys(\"standard_user\");\nawait password.sendKeys(\"secret_sauce\");\nawait loginButton.click();\nawait driver.wait(until.elementLocated(By.className(\"inventory_list\")), 5000);\nawait takeScreenshot(driver, \"login_success\");",
+              "err": {},
+              "uuid": "4cd63930-ce7d-47f5-89a5-943b9c0ab190",
+              "parentUUID": "5debca43-7c2f-476d-830c-05021975eca0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "32e9457f-7063-40e1-b141-ebbe94e66fd7",
+            "4cd63930-ce7d-47f5-89a5-943b9c0ab190"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 959,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        },
+        {
+          "uuid": "80cf16e6-6655-4475-9185-649037b4b4c5",
+          "title": "Navigation Test",
+          "fullFile": "/Users/surendar/aws-webdriver-automation/tests/navigationTest.js",
+          "file": "/tests/navigationTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Navigation Test\"",
+              "fullTitle": "Navigation Test \"before all\" hook in \"Navigation Test\"",
+              "timedOut": false,
+              "duration": 490,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await getDriver();",
+              "err": {},
+              "uuid": "9e9f1c64-dfbb-4a10-88d7-20c828a7eb96",
+              "parentUUID": "80cf16e6-6655-4475-9185-649037b4b4c5",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Navigation Test\"",
+              "fullTitle": "Navigation Test \"after all\" hook in \"Navigation Test\"",
+              "timedOut": false,
+              "duration": 56,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "6f2af5dd-c1ba-4161-b851-e45496676846",
+              "parentUUID": "80cf16e6-6655-4475-9185-649037b4b4c5",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should navigate to the Google homepage",
+              "fullTitle": "Navigation Test should navigate to the Google homepage",
+              "timedOut": false,
+              "duration": 778,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"https://www.google.com\");\nawait takeScreenshot(driver, \"google_homepage\");",
+              "err": {},
+              "uuid": "0cf5fd82-34ac-49d0-87e4-a3be53753b56",
+              "parentUUID": "80cf16e6-6655-4475-9185-649037b4b4c5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0cf5fd82-34ac-49d0-87e4-a3be53753b56"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 778,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "TestReport_20250308223418",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./reports",
+        "reportFilename": "TestReport_20250308223418",
+        "overwrite": "false"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
