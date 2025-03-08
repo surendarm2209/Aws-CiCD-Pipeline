@@ -2,7 +2,7 @@
 import { Builder, By, until } from "selenium-webdriver";
 // import chrome from 'selenium-webdriver/chrome';
 // import { Builder } from 'selenium-webdriver';
-import chrome from "selenium-webdriver/chrome.js"; 
+import chrome from "selenium-webdriver/chrome"; 
 import fs from "fs";
 
 // export async function getDriver() {
