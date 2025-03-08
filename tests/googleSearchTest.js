@@ -33,7 +33,7 @@ it("should search for 'Selenium WebDriver' and verify results", async function (
       let acceptButton = await driver.findElement(By.css("button[aria-label='Accept all']"));
       await acceptButton.click();
   } catch (e) {
-      console.log("No cookie prompt found, proceeding...");
+      console.log("No cookie prompt found,  proceeding...");
   }
 
   // ✅ Wait for search box and type query
